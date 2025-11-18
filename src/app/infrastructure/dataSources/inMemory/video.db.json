@@ -1,0 +1,37 @@
+[
+    {
+        "id": "t1",
+        "topic": "comedy",
+        "description": "Torrente, el brazo tonto de la ley (1998) - Primera película de la saga de Santiago Segura como el torpe policía Torrente.",
+        "duration": 92,
+        "thumbnail": "http://localhost:3000/thumbnails/torrente1.png"
+    },
+    {
+        "id": "t2",
+        "topic": "comedy",
+        "description": "Torrente 2: Misión en Marbella (2001) - Torrente vuelve con nuevas aventuras disparatadas y corrupción en Marbella.",
+        "duration": 96,
+        "thumbnail": "http://localhost:3000/thumbnails/torrente2.png"
+    },
+    {
+        "id": "t3",
+        "topic": "comedy",
+        "description": "Torrente 3: El protector (2005) - Torrente intenta ser héroe mientras mete la pata en cada paso.",
+        "duration": 100,
+        "thumbnail": "http://localhost:3000/thumbnails/torrente3.png"
+    },
+    {
+        "id": "t4",
+        "topic": "comedy",
+        "description": "Torrente 4: Lethal Crisis (2011) - Nuevas desventuras de Torrente en la comedia más irreverente de la saga.",
+        "duration": 101,
+        "thumbnail": "http://localhost:3000/thumbnails/torrente4.png"
+    },
+    {
+        "id": "t5",
+        "topic": "comedy",
+        "description": "Torrente 5: Operación Eurovegas (2014) - Torrente se ve envuelto en un plan para arruinar Eurovegas con su característico caos.",
+        "duration": 95,
+        "thumbnail": "http://localhost:3000/thumbnails/torrente5.png"
+    }
+]
