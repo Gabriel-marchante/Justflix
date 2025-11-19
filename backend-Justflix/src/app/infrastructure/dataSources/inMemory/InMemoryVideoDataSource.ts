@@ -1,28 +1,16 @@
 import { Video } from "../../../domain/entities/Video";
 import { VideoRepository } from "../../../domain/repositories/VideoRepository";
-import fs from "fs/promises";
+import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export class InMemoryVideoDataSource implements VideoRepository {
-    private videos: Video[] = [];
+    private videos: Video[];
 
     constructor() {
-        this.loadData();
-    }
-
-    private async loadData() {
-        try {
-            const filePath = path.join(__dirname, "video.db.json");
-            const data = await fs.readFile(filePath, "utf-8");
-            this.videos = JSON.parse(data);
-        } catch (err) {
-            console.error("Error loading video database:", err);
-            this.videos = [];
-        }
+        // Leer el JSON
+        const filePath = path.resolve("src/app/infrastructure/dataSources/inMemory/video.db.json");
+        const rawData = fs.readFileSync(filePath, "utf-8");
+        this.videos = JSON.parse(rawData);
     }
 
     async getAll(): Promise<Video[]> {
