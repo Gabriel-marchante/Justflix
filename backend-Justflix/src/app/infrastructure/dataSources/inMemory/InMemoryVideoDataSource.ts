@@ -1,27 +1,24 @@
-import { Video } from "../../../domain/entities/Video";
-import { VideoRepository } from "../../../domain/repositories/VideoRepository";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-export class InMemoryVideoDataSource implements VideoRepository {
-    private videos: Video[];
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    constructor() {
-        // Leer el JSON
-        const filePath = path.resolve("src/app/infrastructure/dataSources/inMemory/video.db.json");
-        const rawData = fs.readFileSync(filePath, "utf-8");
-        this.videos = JSON.parse(rawData);
+export class VideoDatabase {
+    private getData() {
+        const filePath = path.join(__dirname, "video.db.json");
+        const raw = fs.readFileSync(filePath, "utf-8");
+        return JSON.parse(raw);
     }
 
-    async getAll(): Promise<Video[]> {
-        return this.videos;
+    getAllVideos() {
+        const data = this.getData();
+        return data.videos;  // <- AHORA LEE "videos"
     }
 
-    async getById(id: string): Promise<Video | null> {
-        return this.videos.find(v => v.id === id) || null;
-    }
-
-    async getByTopic(topic: string): Promise<Video[]> {
-        return this.videos.filter(v => v.topic === topic);
+    getVideoById(id: string) {
+        const data = this.getData();
+        return data.videos.find((v: any) => v.id === id);
     }
 }

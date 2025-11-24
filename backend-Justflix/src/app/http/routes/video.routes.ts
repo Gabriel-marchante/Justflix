@@ -1,21 +1,41 @@
 import { Router } from "express";
-import { InMemoryVideoDataSource } from "../../infrastructure/dataSources/inMemory/InMemoryVideoDataSource";
-import { GetAllVideos } from "../../domain/usecases/videos/GetAllVideos";
-import { GetVideoById } from "../../domain/usecases/videos/GetVideoById";
-import { GetVideosByTopic } from "../../domain/usecases/videos/GetVideosByTopic";
-import { VideoController } from "../controllers/VideoController";
+import { VideoDatabase } from "../../infrastructure/dataSources/inMemory/InMemoryVideoDataSource";
 
 const router = Router();
+const db = new VideoDatabase();
 
-const repo = new InMemoryVideoDataSource();
-const controller = new VideoController(
-    new GetAllVideos(repo),
-    new GetVideoById(repo),
-    new GetVideosByTopic(repo)
-);
+// GET /api/videolist
+router.get("/", (req, res) => {
+    const videos = db.getAllVideos();
+    res.json({ videos });  // <--- AQUÍ DEVUELVE "videos": [...]
+});
 
-router.get("/", controller.getAllVideos);
-router.get("/topic/:topic", controller.getByTopic);
-router.get("/id/:id", controller.getById);
+// GET /api/videolist/id/:id
+router.get("/id/:id", (req, res) => {
+    const video = db.getVideoById(req.params.id);
+
+    if (!video) {
+        return res.status(404).json({ error: "Video not found" });
+    }
+
+    res.json(video);    // <-- Devuelve objeto suelto
+});
+
+router.get("/topic/:topic", (req, res) => {
+    const topic = req.params.topic;
+    const videos = db.getAllVideos();
+
+    const filtered = videos.filter(
+        (video: any) => video.topic.toLowerCase() === topic.toLowerCase()
+    );
+
+    if (filtered.length === 0) {
+        return res.status(404).json({
+            error: "No videos found for topic: " + topic,
+        });
+    }
+
+    res.json({ videos: filtered });
+});
 
 export default router;

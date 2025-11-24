@@ -1,0 +1,32 @@
+{
+  "videos": [
+    {
+      "id": "video001.mp4",
+      "topic": "Tecnologia",
+      "description": "Introducció a la intel·ligència artificial i les seves aplicacions actuals.",
+      "duration": 245.6,
+      "thumbnail": "thumbnails/video001.jpg"
+    },
+    {
+      "id": "video002.mp4",
+      "topic": "Història",
+      "description": "Un recorregut per les civilitzacions antigues i el seu llegat cultural.",
+      "duration": 512.8,
+      "thumbnail": "thumbnails/video002.jpg"
+    },
+    {
+      "id": "video003.mp4",
+      "topic": "Ciència",
+      "description": "Com funciona l'efecte fotoelèctric explicat de manera senzilla.",
+      "duration": 198.4,
+      "thumbnail": "thumbnails/video003.jpg"
+    },
+    {
+      "id": "video004.mp4",
+      "topic": "Música",
+      "description": "Història del jazz i la seva evolució al llarg del segle XX.",
+      "duration": 376.2,
+      "thumbnail": "thumbnails/video004.jpg"
+    }
+  ]
+}
